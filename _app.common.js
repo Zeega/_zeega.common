@@ -1,5 +1,46 @@
+/*
+
+metatags
+
+
+// editor
+<meta name="zeega" content="zeega-editor"
+    data-api-root=""
+    data-root=""
+    data-api-root=""
+    data-hostname="//zeega.com/"
+    data-editor="editor"
+
+    data-user-id="51afee498d34d4d711002a33"
+    data-user-name="Joseph Bergen"
+    data-user-thumbnail="http://static.zeega.org/community/users/36/profile/502539ff1d03e.gif"
+    data-user-username="jbergen"
+
+
+    data-media-root="kinok/"
+    data-project-id="521c157a7131b2085800001e"
+    data-user-email="joseph@zeega.com"
+
+    data-fav-id="51afedf18d34d4d711000000"
+    data-new-user="false"
+    data-new-zeega="false"
+/>
+
+
+// player-standalone
+<meta name="zeega" content="zeega-player"
+    data-user-thumbnail="http://static.zeega.org/community/users/36/profile/502539ff1d03e.gif"
+    data-views="65"
+    data-directory=""
+    data-hostname="//zeega.com/"
+    data-user-id="51afee498d34d4d711002a33"
+    data-logged-in=true
+/>
+
+*/
+
 define([
-    "engineVendor/spin",,
+    "engineVendor/spin",
     "backbone"
 ],
 
