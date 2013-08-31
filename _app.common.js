@@ -50,8 +50,12 @@ function( Spinner ) {
 
         metadata: $("meta[name=zeega]").data(),
 
+        getHostname: function() {
+            return "http:" + this.metadata.hostname;
+        },
+
         getWebRoot: function() {
-            return "http:" + this.metadata.hostname + this.metadata.root;
+            return this.getHostname() + this.metadata.root;
         },
 
         getApi: function() {
@@ -99,5 +103,5 @@ function( Spinner ) {
         spinStop: function() {
             this.spinner.stop();
         }
-    }
+    };
 });
