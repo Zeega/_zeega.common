@@ -40,7 +40,7 @@ metatags
 */
 
 define([
-    "engineVendor/spin",
+    "common/libs/spin",
     "backbone"
 ],
 
