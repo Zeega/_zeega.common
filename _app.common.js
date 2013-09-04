@@ -55,7 +55,7 @@ function( Spinner ) {
         },
 
         getWebRoot: function() {
-            return this.getHostname() + this.metadata.root;
+            return this.getHostname() + ( this.metadata.root || this.metadata.directory );
         },
 
         getApi: function() {
