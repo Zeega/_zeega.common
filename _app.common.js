@@ -70,10 +70,15 @@ function( Spinner ) {
             return "http:" + this.metadata.hostname + this.metadata.mediaRoot;
         },
 
-        emit: function( event, args ) {
+        isEmbed: function() {
+            // return true;
+            return window != window.top;
+        },
+
+        emit: _.memoize(function( event, args ) {
             // other things can be done here as well
             this.trigger( event, args );
-        },
+        }),
 
         spinner: new Spinner({
             lines: 13, // The number of lines to draw
