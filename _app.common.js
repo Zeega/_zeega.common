@@ -74,15 +74,62 @@ function( Spinner ) {
             return "http:" + this.metadata.hostname + this.metadata.mediaRoot;
         },
 
-        isEmbed: function() {
-            // return true;
+        isEmbed: _.memoize(function() {
             return window != window.top;
-        },
+        }),
 
-        emit: _.memoize(function( event, args ) {
+        getPlatformInfo: _.memoize(function() {
+            var info, userAgent;
+
+            userAgent = navigator.userAgent;
+            info = {
+                    platformName: "unknown",
+                    platformVersion: "unknown",
+                    browserName: "unknown",
+                    browserVersion: "unknown",
+                    device: "desktop",
+                    embed: this.isEmbed()
+                }
+
+            if ( /CriOS/i.test( userAgent ) ) {
+
+                _.extend( info, {
+                    platformName: /\((.*);/.exec( userAgent )[1].split(";")[0],
+                    platformVersion: /\s([0-9_\.]*)\s/.exec( userAgent )[1],
+                    browserName: "chrome",
+                    browserVersion: /CriOS\/([0-9_\.]*)\s/.exec( userAgent )[0].split("/")[0],
+                    device: "mobile"
+                });
+
+            } else if ( /(iPhone|iPod|iPad)/i.test( userAgent ) ) {
+
+                _.extend( info, {
+                    platformName: /\((.*)\;?/.exec( userAgent )[1].split(";")[0],
+                    platformVersion: /\s([0-9_\.]*)\s/.exec( userAgent )[1],
+                    browserName: "safari",
+                    browserVersion: /Version\/([a-zA-Z\d\.\s\S]*)\//.exec( userAgent )[1].split("/")[0],
+                    device: "mobile"
+                });
+
+            } else if ( /(Linux).*Chrome/i.test( userAgent ) ) {
+
+                _.extend( info, {
+                    platformName: "android",
+                    platformVersion: /\s([0-9_\.]*);\s/.exec( userAgent )[1],
+                    browserName: "chrome",
+                    browserVersion: /Chrome\/([a-zA-Z\d\.\s\S]*)\//.exec( userAgent )[1].split("/")[0],
+                    device: "mobile"
+                });
+
+            }
+
+            return info;
+        }),
+
+        emit: function( event, args ) {
             // other things can be done here as well
             this.trigger( event, args );
-        }),
+        },
 
         spinner: new Spinner({
             lines: 13, // The number of lines to draw
