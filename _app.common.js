@@ -75,6 +75,7 @@ function( Spinner ) {
         },
 
         isEmbed: _.memoize(function() {
+            return true;
             return window != window.top;
         }),
 
